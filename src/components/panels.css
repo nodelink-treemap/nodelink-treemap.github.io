@@ -15,6 +15,20 @@
     max-height: 100%;
 }
 
+.highlight {
+    stroke: red;
+    stroke-width: 3px;
+    opacity: 1;
+}
+
+
 .treemap {
     flex: 0.5;
+    display: flex;
+    height: calc(100vh - 70px);
+}
+
+.treemap svg {
+    max-width: 100%;
+    max-height: 100%;
 }

@@ -8,17 +8,13 @@ import './App.css'
 
 function App() {
   const datasets = [
+    'animals',
     'flare',
-    'flareFull',
-    'ListYearFile',
-    'sevendiseasereligion',
   ]
 
   const [data, setData] = useState({
-    ListYearFile: undefined,
-    sevendiseasereligion: undefined,
     flare: undefined,
-    flareFull: undefined,
+    animals: undefined,
   })
 
   const [currentData, setCurrentData] = useState(undefined)
@@ -27,18 +23,15 @@ function App() {
   useEffect(() => {
 
     async function fetch() {
-      let listYearFileData = await d3.csv('/ListYearFile.csv')
-      
-      let sevendiseasereligionData = await d3.csv('/sevendiseasereligion.csv')
       let flareData = await d3.json('/flare.json')
-      let flareFullData = await d3.json('/flareFull.json')
-      setData({ 
-        ListYearFile: listYearFileData, 
-        sevendiseasereligion: sevendiseasereligionData, 
-        flare: flareData,
-        flareFull: flareFullData,
-      })
-      setCurrentData(flareData)
+      let animalData = await d3.json('/animals.json')
+
+      const newData = { 
+        flare: { data: flareData, value: d => d.size },
+        animals: { data: animalData, value: d => d.species },
+      }
+      setData(newData)
+      setCurrentData(newData.animals)
     }
     fetch()
 
@@ -63,7 +56,7 @@ function App() {
         {datasets.map((d, i) => <option key={i} value={d}>{d}</option>)}
         </select>
       </div>
-      <Panels data={currentData}/>  
+      <Panels data={currentData && currentData.data} value={currentData && currentData.value}/>  
     </div>
   )
 }
