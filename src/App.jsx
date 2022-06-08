@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import Panels from './components/Panels'
 

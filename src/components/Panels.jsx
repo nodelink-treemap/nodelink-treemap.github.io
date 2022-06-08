@@ -261,19 +261,33 @@ export default function Panels({ data, value }) {
 
         const ancestors = node.ancestors()
         const links = d3.selectAll('.linkG').selectAll('path')
-
-        const rects = d3.selectAll('.treemapRectG').selectAll('rect')
+        const rects = d3.selectAll('.treemapRectG').filter(d => d === node)
 
         links
-            .classed('highlight', d => ancestors.includes(d.source) && ancestors.includes(d.target))
+        .classed('highlight', d => ancestors.includes(d.source) && ancestors.includes(d.target))
 
+        // first raise hovered rect and its label
         rects
-        .classed('highlight', d => ancestors.map(d => d.id).includes(d.id))
+        .raise()
+
+        // then highlight the rect
+        rects.selectAll('rect')
+        .attr('visibility', 'visible')
+        .classed('highlight', true)
+
     }
 
     function exit() {
-        d3.selectAll('path').classed('highlight', false)
-        d3.selectAll('rect').classed('highlight', false)
+        d3.selectAll('path')
+        .classed('highlight', false)
+
+        d3.selectAll('.treemapRectG')
+        .filter(d => d.children)
+        .lower()
+
+        d3.selectAll('rect')
+        .classed('highlight', false)
+        .attr('visibility', d => d.children ? 'hidden' : 'visible')
     }
 
     function updateTreemap(root) {
@@ -281,7 +295,7 @@ export default function Panels({ data, value }) {
         d3.select(treemapRef.current).selectAll('*').remove()
         root.sort((a, b) => a.value < b.value ? 1 : -1)
         
-        let leaves = root.leaves()
+        let leaves = root.descendants()
 
         // Compute the treemap layout.
         d3.treemap()
@@ -320,13 +334,14 @@ export default function Panels({ data, value }) {
 
         node.append("rect")
             .attr("fill", d => d._children ? 'lightsteelblue' : '#ccc')
-            .attr("fill-opacity", 0.6)
+            .attr("fill-opacity", d => d.children ? 0 : 0.6)
             .attr("stroke", '#555')
             .attr("stroke-width", 1.5)
-            .attr("stroke-opacity", 0.7)
+            .attr("stroke-opacity", d => d.children ? 0 : 0.7)
             .attr("stroke-linejoin", 'round')
             .attr("width", d => x(d.x1) - x(d.x0))
             .attr("height", d => y(d.y1) - y(d.y0))
+            .attr('visibility', d => d.children ? 'hidden' : 'visible')
             .on('click', zoom)
             .on('mouseover', hover)
             .on('mouseout', exit)
@@ -351,6 +366,7 @@ export default function Panels({ data, value }) {
             .attr("height", d => y(d.y1) - y(d.y0))
 
         node.append("text")
+            .attr('visibility', d => d.children ? 'hidden' : 'visible')
             .attr("clip-path", (d, i) => `url(${new URL(`#${uid}-clip-${i}`, location)})`)
             .selectAll("tspan")
             .data((d, i) => `${d.data.name}\n${d.value}`.split(/\n/g))
@@ -362,7 +378,6 @@ export default function Panels({ data, value }) {
             .style('pointer-events', 'none')
 
     }
-
 
     function zoom(_, d) {
 

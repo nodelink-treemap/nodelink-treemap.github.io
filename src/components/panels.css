@@ -19,8 +19,8 @@
     stroke: red;
     stroke-width: 3px;
     opacity: 1;
+    stroke-opacity: 1;
 }
-
 
 .treemap {
     flex: 0.5;
