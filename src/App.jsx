@@ -10,11 +10,15 @@ function App() {
   const datasets = [
     'animals',
     'flare',
+    'sp500',
+    'orchestras',
   ]
 
   const [data, setData] = useState({
     flare: undefined,
     animals: undefined,
+    sp500: undefined,
+    orchestras: undefined,
   })
 
   const [currentData, setCurrentData] = useState(undefined)
@@ -25,10 +29,14 @@ function App() {
     async function fetch() {
       let flareData = await d3.json('/flare.json')
       let animalData = await d3.json('/animals.json')
+      let sp500Data = await d3.json('/sp500.json')
+      let orchestrasData = await d3.json('/orchestras.json')
 
       const newData = { 
         flare: { data: flareData, value: d => d.size },
         animals: { data: animalData, value: d => d.species },
+        sp500: { data: sp500Data, value: d => d.marketcap },
+        orchestras: { data: orchestrasData, value: d => d.number },
       }
       setData(newData)
       setCurrentData(newData.animals)

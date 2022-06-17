@@ -177,14 +177,14 @@ export default function nodelink() {
                 .attr("fill", d => d === root ? '#ccc' : colorScale(d.value))
                 .attr('stroke', '#1c1c1c')
                 .attr('stroke-width', 1.5)
-                .attr("r", d => d._children ? 10 : 7)
+                .attr("r", d => d._children ? 9 : 6)
         }
 
         // updates the text label for each node in the nodes parameter
         function updateText(nodes) {
             nodes
                 .attr("dy", "0.32em")
-                .attr("x", d => d.children || d._children ? -13 : 10)
+                .attr("x", d => d.children || d._children ? -12 : 10)
                 .attr("text-anchor", d => d.children || d._children ? "end" : "start")
                 .attr("paint-order", "stroke")
                 .attr("stroke", '#fff')

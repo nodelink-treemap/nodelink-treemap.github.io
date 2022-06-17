@@ -25,15 +25,18 @@ export default function Panels({ data, value }) {
     
 
     
-    const treemapRef = useRef(null)
-    const treemapChart = treemap()
-    .dimensions(chartDimensions)
+    const treemapRef = useRef(null),
+        treemapChart = treemap(),
+        nodelinkRef = useRef(null),
+        nodelinkChart = nodelink()
+
+    treemapChart.dimensions(chartDimensions)
     .hover(hover)
     .exit(exit)
+    .nodelinkSelection(d3.select(nodelinkRef.current))
+    .nodelink(nodelinkChart)
 
-    const nodelinkRef = useRef(null)
-    const nodelinkChart = nodelink()
-    .dimensions(chartDimensions)
+    nodelinkChart.dimensions(chartDimensions)
     .setRoot(setRoot)
     .hover(hover)
     .exit(exit)

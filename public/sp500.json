@@ -1,0 +1,585 @@
+{
+    "name": "companies",
+    "children": [
+        {
+            "name": "Technology",
+            "children": [
+                {
+                    "name": "AAPL",
+                    "marketcap": 2133816377344
+                },
+                {
+                    "name": "Software—Infrastructure",
+                    "children": [
+                        {
+                            "name": "MSFT",
+                            "marketcap": 1839229829120
+                        },
+                        {
+                            "name": "ORCL",
+                            "marketcap": 183486611456
+                        },
+                        {
+                            "name": "ADBE",
+                            "marketcap": 173705052160
+                        }
+                    ]
+                },
+                {
+                    "name": "Semiconductors",
+                    "children": [
+                        {
+                            "name": "NVDA",
+                            "marketcap": 388776919040
+                        },
+                        {
+                            "name": "AVGO",
+                            "marketcap": 205272678400
+                        },
+                        {
+                            "name": "INTC",
+                            "marketcap": 151861788672
+                        },
+                        {
+                            "name": "TXN",
+                            "marketcap": 139794120704
+                        },
+                        {
+                            "name": "QCOM",
+                            "marketcap": 135318396928
+                        },
+                        {
+                            "name": "AMD",
+                            "marketcap": 99084402688
+                        },
+                        {
+                            "name": "ADI",
+                            "marketcap": 75363991552
+                        }
+                    ]
+                },
+                {
+                    "name": "CSCO",
+                    "marketcap": 182706864128
+                },
+                {
+                    "name": "Software—Application",
+                    "children": [
+                        {
+                            "name": "CRM",
+                            "marketcap": 157452255232
+                        },
+                        {
+                            "name": "INTU",
+                            "marketcap": 101835350016
+                        },
+                        {
+                            "name": "NOW",
+                            "marketcap": 85187919872
+                        }
+                    ]
+                },
+                {
+                    "name": "IBM",
+                    "marketcap": 121603735552
+                },
+                {
+                    "name": "AMAT",
+                    "marketcap": 79601876992
+                }
+            ]
+        },
+        {
+            "name": "Communication Services",
+            "children": [
+                {
+                    "name": "Internet Content & Information",
+                    "children": [
+                        {
+                            "name": "GOOG",
+                            "marketcap": 1415535263744
+                        },
+                        {
+                            "name": "GOOGL",
+                            "marketcap": 1407702925312
+                        }
+                    ]
+                },
+                {
+                    "name": "Telecom Services",
+                    "children": [
+                        {
+                            "name": "VZ",
+                            "marketcap": 205018595328
+                        },
+                        {
+                            "name": "TMUS",
+                            "marketcap": 155231928320
+                        },
+                        {
+                            "name": "T",
+                            "marketcap": 135393353728
+                        }
+                    ]
+                },
+                {
+                    "name": "Entertainment",
+                    "children": [
+                        {
+                            "name": "CMCSA",
+                            "marketcap": 173207764992
+                        },
+                        {
+                            "name": "DIS",
+                            "marketcap": 171368988672
+                        },
+                        {
+                            "name": "NFLX",
+                            "marketcap": 76785729536
+                        },
+                        {
+                            "name": "CHTR",
+                            "marketcap": 74468524032
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Consumer Cyclical",
+            "children": [
+                {
+                    "name": "TSLA",
+                    "marketcap": 642023358464
+                },
+                {
+                    "name": "Home Improvement Retail",
+                    "children": [
+                        {
+                            "name": "HD",
+                            "marketcap": 285557850112
+                        },
+                        {
+                            "name": "LOW",
+                            "marketcap": 115621724160
+                        }
+                    ]
+                },
+                {
+                    "name": "MCD",
+                    "marketcap": 175744548864
+                },
+                {
+                    "name": "NKE",
+                    "marketcap": 169551675392
+                },
+                {
+                    "name": "BKNG",
+                    "marketcap": 75806244864
+                },
+                {
+                    "name": "TJX",
+                    "marketcap": 67684012032
+                }
+            ]
+        },
+        {
+            "name": "Financial Services",
+            "children": [
+                {
+                    "name": "BRK-B",
+                    "marketcap": 601378324480
+                },
+                {
+                    "name": "Banks—Diversified",
+                    "children": [
+                        {
+                            "name": "JPM",
+                            "marketcap": 343504617472
+                        },
+                        {
+                            "name": "BAC",
+                            "marketcap": 260662951936
+                        },
+                        {
+                            "name": "WFC",
+                            "marketcap": 150119219200
+                        },
+                        {
+                            "name": "C",
+                            "marketcap": 93042417664
+                        }
+                    ]
+                },
+                {
+                    "name": "Credit Services",
+                    "children": [
+                        {
+                            "name": "MA",
+                            "marketcap": 303393931264
+                        },
+                        {
+                            "name": "AXP",
+                            "marketcap": 106501455872
+                        },
+                        {
+                            "name": "PYPL",
+                            "marketcap": 83690274816
+                        }
+                    ]
+                },
+                {
+                    "name": "Capital Markets",
+                    "children": [
+                        {
+                            "name": "MS",
+                            "marketcap": 132696612864
+                        },
+                        {
+                            "name": "SCHW",
+                            "marketcap": 115061915648
+                        },
+                        {
+                            "name": "GS",
+                            "marketcap": 95063056384
+                        }
+                    ]
+                },
+                {
+                    "name": "BLK",
+                    "marketcap": 88988418048
+                },
+                {
+                    "name": "Financial Data & Stock Exchanges",
+                    "children": [
+                        {
+                            "name": "SPGI",
+                            "marketcap": 76163227648
+                        },
+                        {
+                            "name": "CME",
+                            "marketcap": 73058631680
+                        }
+                    ]
+                },
+                {
+                    "name": "MMC",
+                    "marketcap": 72876539904
+                },
+                {
+                    "name": "USB",
+                    "marketcap": 67333947392
+                }
+            ]
+        },
+        {
+            "name": "Healthcare",
+            "children": [
+                {
+                    "name": "Drug Manufacturers—General",
+                    "children": [
+                        {
+                            "name": "JNJ",
+                            "marketcap": 447752634368
+                        },
+                        {
+                            "name": "LLY",
+                            "marketcap": 275565477888
+                        },
+                        {
+                            "name": "PFE",
+                            "marketcap": 266499063808
+                        },
+                        {
+                            "name": "ABBV",
+                            "marketcap": 245893349376
+                        },
+                        {
+                            "name": "MRK",
+                            "marketcap": 214427041792
+                        },
+                        {
+                            "name": "BMY",
+                            "marketcap": 161190264832
+                        },
+                        {
+                            "name": "AMGN",
+                            "marketcap": 129951096832
+                        },
+                        {
+                            "name": "GILD",
+                            "marketcap": 72402812928
+                        }
+                    ]
+                },
+                {
+                    "name": "Healthcare Plans",
+                    "children": [
+                        {
+                            "name": "UNH",
+                            "marketcap": 429568819200
+                        },
+                        {
+                            "name": "CVS",
+                            "marketcap": 118607388672
+                        },
+                        {
+                            "name": "ANTM",
+                            "marketcap": 110377082880
+                        },
+                        {
+                            "name": "CI",
+                            "marketcap": 82293571584
+                        }
+                    ]
+                },
+                {
+                    "name": "Diagnostics & Research",
+                    "children": [
+                        {
+                            "name": "TMO",
+                            "marketcap": 198950895616
+                        },
+                        {
+                            "name": "DHR",
+                            "marketcap": 172105875456
+                        }
+                    ]
+                },
+                {
+                    "name": "Medical Devices",
+                    "children": [
+                        {
+                            "name": "ABT",
+                            "marketcap": 178718441472
+                        },
+                        {
+                            "name": "SYK",
+                            "marketcap": 73825869824
+                        }
+                    ]
+                },
+                {
+                    "name": "ZTS",
+                    "marketcap": 74465304576
+                },
+                {
+                    "name": "Medical Instruments & Supplies",
+                    "children": [
+                        {
+                            "name": "ISRG",
+                            "marketcap": 68128669696
+                        },
+                        {
+                            "name": "BDX",
+                            "marketcap": 66910998528
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Energy",
+            "children": [
+                {
+                    "name": "Oil & Gas Integrated",
+                    "children": [
+                        {
+                            "name": "XOM",
+                            "marketcap": 389383553024
+                        },
+                        {
+                            "name": "CVX",
+                            "marketcap": 299717230592
+                        }
+                    ]
+                },
+                {
+                    "name": "Oil & Gas E&P",
+                    "children": [
+                        {
+                            "name": "COP",
+                            "marketcap": 135086858240
+                        },
+                        {
+                            "name": "EOG",
+                            "marketcap": 69953355776
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Consumer Defensive",
+            "children": [
+                {
+                    "name": "Discount Stores",
+                    "children": [
+                        {
+                            "name": "WMT",
+                            "marketcap": 334585430016
+                        },
+                        {
+                            "name": "COST",
+                            "marketcap": 200324841472
+                        },
+                        {
+                            "name": "TGT",
+                            "marketcap": 68462026752
+                        }
+                    ]
+                },
+                {
+                    "name": "Household & Personal Products",
+                    "children": [
+                        {
+                            "name": "PG",
+                            "marketcap": 322627764224
+                        },
+                        {
+                            "name": "EL",
+                            "marketcap": 83910844416
+                        }
+                    ]
+                },
+                {
+                    "name": "Beverages—Non-Alcoholic",
+                    "children": [
+                        {
+                            "name": "KO",
+                            "marketcap": 255148130304
+                        },
+                        {
+                            "name": "PEP",
+                            "marketcap": 217117523968
+                        }
+                    ]
+                },
+                {
+                    "name": "Tobacco",
+                    "children": [
+                        {
+                            "name": "PM",
+                            "marketcap": 152989679616
+                        },
+                        {
+                            "name": "MO",
+                            "marketcap": 83362603008
+                        }
+                    ]
+                },
+                {
+                    "name": "MDLZ",
+                    "marketcap": 81759191040
+                }
+            ]
+        },
+        {
+            "name": "Industrials",
+            "children": [
+                {
+                    "name": "UPS",
+                    "marketcap": 149657567232
+                },
+                {
+                    "name": "Aerospace & Defense",
+                    "children": [
+                        {
+                            "name": "RTX",
+                            "marketcap": 133991743488
+                        },
+                        {
+                            "name": "LMT",
+                            "marketcap": 111635406848
+                        },
+                        {
+                            "name": "BA",
+                            "marketcap": 78375542784
+                        },
+                        {
+                            "name": "NOC",
+                            "marketcap": 70647906304
+                        }
+                    ]
+                },
+                {
+                    "name": "UNP",
+                    "marketcap": 133840363520
+                },
+                {
+                    "name": "Conglomerates",
+                    "children": [
+                        {
+                            "name": "HON",
+                            "marketcap": 123833524224
+                        },
+                        {
+                            "name": "MMM",
+                            "marketcap": 74512588800
+                        }
+                    ]
+                },
+                {
+                    "name": "Farm & Heavy Construction Machinery",
+                    "children": [
+                        {
+                            "name": "CAT",
+                            "marketcap": 105370091520
+                        },
+                        {
+                            "name": "DE",
+                            "marketcap": 97623244800
+                        }
+                    ]
+                },
+                {
+                    "name": "ADP",
+                    "marketcap": 84251516928
+                },
+                {
+                    "name": "GE",
+                    "marketcap": 71697563648
+                }
+            ]
+        },
+        {
+            "name": "Utilities",
+            "children": [
+                {
+                    "name": "NEE",
+                    "marketcap": 139056873472
+                },
+                {
+                    "name": "DUK",
+                    "marketcap": 76580397056
+                },
+                {
+                    "name": "SO",
+                    "marketcap": 70243540992
+                }
+            ]
+        },
+        {
+            "name": "Real Estate",
+            "children": [
+                {
+                    "name": "REIT—Specialty",
+                    "children": [
+                        {
+                            "name": "AMT",
+                            "marketcap": 106648854528
+                        },
+                        {
+                            "name": "CCI",
+                            "marketcap": 66987147264
+                        }
+                    ]
+                },
+                {
+                    "name": "PLD",
+                    "marketcap": 82649366528
+                }
+            ]
+        }
+    ]
+}

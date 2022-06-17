@@ -1,0 +1,519 @@
+{
+    "name": "orchestras",
+    "children": [
+        {
+            "name": "Modern orchestra",
+            "children": [
+                {
+                    "name": "Brass",
+                    "children": [
+                        {
+                            "name": "Baritone horn",
+                            "number": "1"
+                        },
+                        {
+                            "name": "French Horns",
+                            "number": "8"
+                        },
+                        {
+                            "name": "Trombones",
+                            "number": "6"
+                        },
+                        {
+                            "name": "Trumpets",
+                            "number": "6"
+                        },
+                        {
+                            "name": "Tubas",
+                            "number": "2"
+                        }
+                    ]
+                },
+                {
+                    "name": "Percussion",
+                    "children": [
+                        {
+                            "name": "Bass Drum",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Cymbals",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Glockenspiel",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Marimba",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Snare Drum",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Tam-tam",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Tambourine",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Tenor drum",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Timpani",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Triangle",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Tubular bells",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Vibraphone",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Wood block",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Xylophone",
+                            "number": "1"
+                        }
+                    ]
+                },
+                {
+                    "name": "Woodwinds",
+                    "children": [
+                        {
+                            "name": "Bassoons",
+                            "number": "4"
+                        },
+                        {
+                            "name": "Clarinets",
+                            "number": "4"
+                        },
+                        {
+                            "name": "Flutes",
+                            "number": "4"
+                        },
+                        {
+                            "name": "Oboes",
+                            "number": "4"
+                        }
+                    ]
+                },
+                {
+                    "name": "Keyboards",
+                    "children": [
+                        {
+                            "name": "Celesta",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Piano",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Pipe organ",
+                            "number": "1"
+                        }
+                    ]
+                },
+                {
+                    "name": "Strings",
+                    "children": [
+                        {
+                            "name": "Cellos",
+                            "number": "12"
+                        },
+                        {
+                            "name": "Double basses",
+                            "number": "10"
+                        },
+                        {
+                            "name": "Harps",
+                            "number": "2"
+                        },
+                        {
+                            "name": "Violas",
+                            "number": "14"
+                        },
+                        {
+                            "name": "Violins 1",
+                            "number": "18"
+                        },
+                        {
+                            "name": "Violins 2",
+                            "number": "16"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Early Romantic orchestra",
+            "children": [
+                {
+                    "name": "Woodwinds",
+                    "children": [
+                        {
+                            "name": "Bass Clarinet",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Bassoons",
+                            "number": "2"
+                        },
+                        {
+                            "name": "Clarinets",
+                            "number": "2"
+                        },
+                        {
+                            "name": "Contrabassoon",
+                            "number": "1"
+                        },
+                        {
+                            "name": "English Horn",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Flutes",
+                            "number": "2"
+                        },
+                        {
+                            "name": "Oboes",
+                            "number": "2"
+                        },
+                        {
+                            "name": "Piccolo",
+                            "number": "1"
+                        }
+                    ]
+                },
+                {
+                    "name": "Percussion",
+                    "children": [
+                        {
+                            "name": "Bass Drum",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Cymbals",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Glockenspiel",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Snare Drum",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Tambourine",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Timpani",
+                            "number": "3"
+                        },
+                        {
+                            "name": "Triangle",
+                            "number": "1"
+                        }
+                    ]
+                },
+                {
+                    "name": "Strings",
+                    "children": [
+                        {
+                            "name": "Cellos",
+                            "number": "8"
+                        },
+                        {
+                            "name": "Double basses",
+                            "number": "6"
+                        },
+                        {
+                            "name": "Harps",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Violas",
+                            "number": "10"
+                        },
+                        {
+                            "name": "Violins 1",
+                            "number": "14"
+                        },
+                        {
+                            "name": "Violins 2",
+                            "number": "12"
+                        }
+                    ]
+                },
+                {
+                    "name": "Brass",
+                    "children": [
+                        {
+                            "name": "Cornet",
+                            "number": "2"
+                        },
+                        {
+                            "name": "French Horns",
+                            "number": "4"
+                        },
+                        {
+                            "name": "Trombones",
+                            "number": "3"
+                        },
+                        {
+                            "name": "Trumpets",
+                            "number": "2"
+                        },
+                        {
+                            "name": "Tubas",
+                            "number": "1"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Late Romantic orchestra",
+            "children": [
+                {
+                    "name": "Woodwinds",
+                    "children": [
+                        {
+                            "name": "Bass Clarinet",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Bassoons",
+                            "number": "3"
+                        },
+                        {
+                            "name": "Clarinets",
+                            "number": "3"
+                        },
+                        {
+                            "name": "Contrabassoon",
+                            "number": "1"
+                        },
+                        {
+                            "name": "English Horn",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Flutes",
+                            "number": "3"
+                        },
+                        {
+                            "name": "Oboes",
+                            "number": "3"
+                        },
+                        {
+                            "name": "Piccolo",
+                            "number": "1"
+                        }
+                    ]
+                },
+                {
+                    "name": "Percussion",
+                    "children": [
+                        {
+                            "name": "Bass Drum",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Chimes",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Cymbals",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Glockenspiel",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Snare Drum",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Tam-tam",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Tambourine",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Timpani",
+                            "number": "4"
+                        },
+                        {
+                            "name": "Triangle",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Xylophone",
+                            "number": "1"
+                        }
+                    ]
+                },
+                {
+                    "name": "Keyboards",
+                    "children": [
+                        {
+                            "name": "Celesta",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Piano",
+                            "number": "1"
+                        }
+                    ]
+                },
+                {
+                    "name": "Strings",
+                    "children": [
+                        {
+                            "name": "Cellos",
+                            "number": "10"
+                        },
+                        {
+                            "name": "Double basses",
+                            "number": "8"
+                        },
+                        {
+                            "name": "Harps",
+                            "number": "2"
+                        },
+                        {
+                            "name": "Violas",
+                            "number": "12"
+                        },
+                        {
+                            "name": "Violins 1",
+                            "number": "16"
+                        },
+                        {
+                            "name": "Violins 2",
+                            "number": "14"
+                        }
+                    ]
+                },
+                {
+                    "name": "Brass",
+                    "children": [
+                        {
+                            "name": "French Horns",
+                            "number": "8"
+                        },
+                        {
+                            "name": "Trombones",
+                            "number": "4"
+                        },
+                        {
+                            "name": "Trumpets",
+                            "number": "4"
+                        },
+                        {
+                            "name": "Tubas",
+                            "number": "2"
+                        },
+                        {
+                            "name": "Wagner Tuba",
+                            "number": "1"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Classical orchestra",
+            "children": [
+                {
+                    "name": "Woodwinds",
+                    "children": [
+                        {
+                            "name": "Bassoons",
+                            "number": "2"
+                        },
+                        {
+                            "name": "Clarinets",
+                            "number": "2"
+                        },
+                        {
+                            "name": "Flutes",
+                            "number": "2"
+                        },
+                        {
+                            "name": "Oboes",
+                            "number": "2"
+                        }
+                    ]
+                },
+                {
+                    "name": "Strings",
+                    "children": [
+                        {
+                            "name": "Cellos",
+                            "number": "2"
+                        },
+                        {
+                            "name": "Double basses",
+                            "number": "1"
+                        },
+                        {
+                            "name": "Violas",
+                            "number": "4"
+                        },
+                        {
+                            "name": "Violins 1",
+                            "number": "6"
+                        },
+                        {
+                            "name": "Violins 2",
+                            "number": "6"
+                        }
+                    ]
+                },
+                {
+                    "name": "Brass",
+                    "children": [
+                        {
+                            "name": "French Horns",
+                            "number": "4"
+                        },
+                        {
+                            "name": "Trumpets",
+                            "number": "2"
+                        }
+                    ]
+                },
+                {
+                    "name": "Percussion",
+                    "children": [
+                        {
+                            "name": "Timpani",
+                            "number": "2"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

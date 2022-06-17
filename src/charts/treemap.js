@@ -9,6 +9,8 @@ export default function treemap(second) {
         y = d3.scaleLinear(),
         depth = 0,
         treemapRoot,
+        nodelink,
+        nodelinkSelection,
         colorScale
 
     const my = (selection) => {
@@ -54,7 +56,7 @@ export default function treemap(second) {
             .attr('class', 'treemapg')
 
         const node = svg.selectAll("g")
-            .data(leaves.concat(treemapRoot))
+            .data(leaves)
             .join("g")
             .attr('class', 'treemapRectG')
             .attr("transform", d => d === treemapRoot ? 'translate(0,-30)' : `translate(${x(d.x0)},${y(d.y0)})`)
@@ -119,12 +121,20 @@ export default function treemap(second) {
 
                 treemapRoot = topLevelParent
             }
+            if(topLevelParent._children) {
+                //toggle
+                d.children = d._children
+                d._children = null
+
+                nodelinkSelection.call(nodelink.source(topLevelParent))
+            }
 
             selection.call(my)
 
         }
 
         function zoomout(_, d) {
+
             const parent = d && d.parent
 
             if (parent) {
@@ -136,8 +146,21 @@ export default function treemap(second) {
 
                 treemapRoot = parent
 
+                // collapse siblings
+                parent.children.forEach(c => collapse(c));
+
+                // update
                 selection.call(my)
+                nodelinkSelection.call(nodelink.source(d)) // and update source of change
             }
+        }
+    }
+
+    function collapse(node) {
+        if (node.children) {
+            node._children = node.children
+            node.children = null
+            node._children.forEach(c => collapse(c))
         }
     }
 
@@ -163,6 +186,12 @@ export default function treemap(second) {
     }
     my.treemapRoot = function (_) {
         return arguments.length ? (treemapRoot = _, my) : treemapRoot
+    }
+    my.nodelink = function (_) {
+        return arguments.length ? (nodelink = _, my) : nodelink
+    }
+    my.nodelinkSelection = function (_) {
+        return arguments.length ? (nodelinkSelection = _, my) : nodelinkSelection
     }
     my.colorScale = function (_) {
         return arguments.length ? (colorScale = _, my) : colorScale
