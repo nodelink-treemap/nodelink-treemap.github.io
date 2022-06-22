@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect, useReducer } from 'react'
+import { legendColor } from 'd3-svg-legend'
 
 import * as d3 from 'd3'
 
@@ -6,11 +7,9 @@ import './panels.css'
 import nodelink from '../charts/nodelink'
 import treemap from '../charts/treemap'
 
-export default function Panels({ data, value }) {
+export default function Panels({ data, value, format }) {
     
     const [root, setRoot] = useState()
-
-
 
     const chartDimensions = {
         width: window.innerWidth / 2,
@@ -52,15 +51,6 @@ export default function Panels({ data, value }) {
 
         _root.sort((a, b) => a.data.name.localeCompare(b.data.name))
         _root.sum(d => value(d) === undefined ? 0 : value(d))
-        
-        const collapse = (node) => {
-            if (node.children) {
-                node._children = node.children
-                node.children = null
-                node._children.forEach(c => collapse(c))
-            }
-        }
-        _root.children.forEach(c => collapse(c))
 
         setRoot(_root)
     }, [data])
@@ -69,7 +59,37 @@ export default function Panels({ data, value }) {
         if(!root) return
         
         const colorScale = d3.scaleSequential(d3.interpolateReds)
-        .domain(d3.extent(root.descendants(), d => d.value))
+        .domain(d3.extent(root.descendants().filter(d => d !== root), d => d.value))
+
+        // color legend
+        let legend = legendColor()
+        .shapeWidth(50)
+        .scale(colorScale)
+        .labelFormat(d3.format('.3s'))
+        .labelWrap(30)
+        .orient('horizontal')
+
+
+        let svgLegend = d3.select('.topWrapper').selectAll('.legendSVG')
+        .data([null])
+        .join('svg')
+        .attr('class', 'legendSVG')
+
+        svgLegend.selectAll('.legend')
+        .data([null])
+        .join('g')
+        .attr('class', 'legend')
+        .attr('transform', `translate(0,70)`)
+        .call(legend)
+
+        const collapse = (node) => {
+            if (node.children) {
+                node._children = node.children
+                node.children = null
+                node._children.forEach(c => collapse(c))
+            }
+        }
+        root.children.forEach(c => collapse(c))
 
 
         nodelinkChart.root(root)
@@ -79,6 +99,10 @@ export default function Panels({ data, value }) {
         treemapChart.root(root)
         .treemapRoot(root)
         .colorScale(colorScale)
+
+        if(format) {
+            treemapChart.format(format)
+        }
 
         // render
         let nodelinkRefElement = d3.select(nodelinkRef.current)

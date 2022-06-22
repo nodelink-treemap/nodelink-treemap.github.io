@@ -1,4 +1,5 @@
 import * as d3 from 'd3'
+import { legendColor } from 'd3-svg-legend'
 
 export default function treemap(second) {
     let root,
@@ -11,7 +12,8 @@ export default function treemap(second) {
         treemapRoot,
         nodelink,
         nodelinkSelection,
-        colorScale
+        colorScale,
+        format = d3.format(',')
 
     const my = (selection) => {
 
@@ -99,7 +101,7 @@ export default function treemap(second) {
             .attr('visibility', d => (d !== treemapRoot && d.children) ? 'hidden' : 'visible')
             .attr("clip-path", (d, i) => `url(${new URL(`#${uid}-clip-${i}`, location)})`)
             .selectAll("tspan")
-            .data((d, i) => d === treemapRoot ? [d.ancestors().map(d => d.data.name).reverse().join('/')] : `${d.data.name}\n${d.value}`.split(/\n/g))
+            .data((d, i) => d === treemapRoot ? [d.ancestors().map(d => d.data.name).reverse().join('/')] : `${d.data.name}\n${format(d.value)}`.split(/\n/g))
             .join("tspan")
             .attr("x", 3)
             .attr("y", (d, i, D) => `${(i === D.length - 1) * 0.3 + 1.1 + i * 0.9}em`)
@@ -154,6 +156,7 @@ export default function treemap(second) {
                 nodelinkSelection.call(nodelink.source(d)) // and update source of change
             }
         }
+
     }
 
     function collapse(node) {
@@ -195,6 +198,9 @@ export default function treemap(second) {
     }
     my.colorScale = function (_) {
         return arguments.length ? (colorScale = _, my) : colorScale
+    }
+    my.format = function (_) {
+        return arguments.length ? (format = _, my) : format
     }
 
     return my

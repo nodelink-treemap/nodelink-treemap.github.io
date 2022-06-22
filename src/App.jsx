@@ -35,7 +35,8 @@ function App() {
       const newData = { 
         flare: { data: flareData, value: d => d.size },
         animals: { data: animalData, value: d => d.species },
-        sp500: { data: sp500Data, value: d => d.marketcap },
+        // sp500: { data: sp500Data, value: d => d.marketcap, format: d => d < 1e12 ? d3.formatPrefix('$,.0', 1e6)(d) : d3.formatPrefix('$.3', 1e12)(d) },
+        sp500: { data: sp500Data, value: d => d.marketcap, format: d3.format('.3s') },
         orchestras: { data: orchestrasData, value: d => d.number },
       }
       setData(newData)
@@ -60,11 +61,11 @@ function App() {
         <h1>Welcome to nodelink-treemap</h1>
 
         {/* disabled dropdown for even spacing */}
-        <select disabled="disabled">
+        {/* <select disabled="disabled">
         {datasets.map((d, i) => <option key={i} value={d}>{d}</option>)}
-        </select>
+        </select> */}
       </div>
-      <Panels data={currentData && currentData.data} value={currentData && currentData.value}/>  
+      <Panels data={currentData && currentData.data} value={currentData && currentData.value} format={currentData && currentData.format} />  
     </div>
   )
 }
