@@ -66,9 +66,7 @@ export default function Panels({ data, value, format }) {
         .shapeWidth(50)
         .scale(colorScale)
         .labelFormat(d3.format('.3s'))
-        .labelWrap(30)
         .orient('horizontal')
-
 
         let svgLegend = d3.select('.topWrapper').selectAll('.legendSVG')
         .data([null])
@@ -143,7 +141,6 @@ export default function Panels({ data, value, format }) {
 
         d3.selectAll('rect')
         .classed('highlight', false)
-        // .attr('visibility', d => d.children ? 'hidden' : 'visible')
     }
 
     return (
