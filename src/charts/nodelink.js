@@ -16,6 +16,8 @@ export default function nodelink() {
 
         const { width, height } = dimensions
 
+        const treemapRoot = treemap.treemapRoot()
+
         root.sort((a, b) => a.data.name.localeCompare(b.data.name))
 
         // Compute the layout.
@@ -57,6 +59,7 @@ export default function nodelink() {
                         .attr('class', 'node')
                         .style('cursor', d => d.children || d._children ? 'pointer' : 'default')
                         .attr('transform', `translate(${source.y},${source.x})`)
+                        .style('outline', d => d === treemapRoot ? 'solid 2px black' : 'none')
                         .on('click', click)
                         .on('mouseover', hover)
                         .on('mouseout', exit)
@@ -70,13 +73,13 @@ export default function nodelink() {
                         .transition()
                         .duration(700)
                         .call(updateCircle)
-
+                        
                     node.append('text')
                         .attr('opacity', 0)
                         .transition()
                         .duration(700)
                         .call(updateText)
-
+                    
                 },
                 (update) => update.call(update => {
                     update
@@ -84,12 +87,14 @@ export default function nodelink() {
                         .duration(700)
                         // update group position
                         .attr("transform", d => `translate(${d.y},${d.x})`)
+                        .style('outline', d => d === treemapRoot ? 'solid 2px black' : 'none')
 
                     update.select('circle')
                         .call(updateCircle)
 
                     update.select('text')
                         .call(updateText)
+
                 }),
                 (exit) => {
                     exit
@@ -192,7 +197,6 @@ export default function nodelink() {
                 .attr('opacity', 1)
                 .text(d => d.data.name)
         }
-
 
     }
 

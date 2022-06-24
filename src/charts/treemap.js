@@ -65,7 +65,7 @@ export default function treemap(second) {
 
         node.append("rect")
             .attr("fill", d => d === treemapRoot ? '#ccc' : colorScale(d.value))
-            .attr("fill-opacity", d => d !== treemapRoot && d.children ? 0 : 0.6)
+            .attr("fill-opacity", d => d !== treemapRoot && d.children ? 0 : 0.9)
             .attr("stroke", '#555')
             .attr("stroke-width", 1.5)
             .attr("stroke-opacity", d => d !== treemapRoot && d.children ? 0 : 0.7)
@@ -99,6 +99,7 @@ export default function treemap(second) {
         node.append("text")
             .attr('visibility', d => (d !== treemapRoot && d.children) ? 'hidden' : 'visible')
             .attr("clip-path", (d, i) => `url(${new URL(`#${uid}-clip-${i}`, location)})`)
+            .attr('fill', d => d === treemapRoot || (d.value / colorScale.domain().at(1)) < 0.6 ? 'black' : 'white') // if root or color is lighter, make text black. Else, make text white
             .selectAll("tspan")
             .data((d, i) => d === treemapRoot ? [d.ancestors().map(d => d.data.name).reverse().join('/')] : `${d.data.name}\n${format(d.value)}`.split(/\n/g))
             .join("tspan")
@@ -128,6 +129,8 @@ export default function treemap(second) {
                 d._children = null
 
                 nodelinkSelection.call(nodelink.source(topLevelParent))
+            } else {
+                nodelinkSelection.call(nodelink)
             }
 
             selection.call(my)
