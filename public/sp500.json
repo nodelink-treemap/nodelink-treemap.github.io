@@ -93,7 +93,7 @@
             "name": "Communication Services",
             "children": [
                 {
-                    "name": "Internet Content & Information",
+                    "name": "Internet Content",
                     "children": [
                         {
                             "name": "GOOG",
@@ -153,7 +153,7 @@
                     "marketcap": 642023358464
                 },
                 {
-                    "name": "Home Improvement Retail",
+                    "name": "Home Improvement",
                     "children": [
                         {
                             "name": "HD",
@@ -191,7 +191,7 @@
                     "marketcap": 601378324480
                 },
                 {
-                    "name": "Banks—Diversified",
+                    "name": "Banks",
                     "children": [
                         {
                             "name": "JPM",
@@ -250,7 +250,7 @@
                     "marketcap": 88988418048
                 },
                 {
-                    "name": "Financial Data & Stock Exchanges",
+                    "name": "Financial Data",
                     "children": [
                         {
                             "name": "SPGI",
@@ -276,7 +276,7 @@
             "name": "Healthcare",
             "children": [
                 {
-                    "name": "Drug Manufacturers—General",
+                    "name": "Drug Manufacturers",
                     "children": [
                         {
                             "name": "JNJ",
@@ -364,7 +364,7 @@
                     "marketcap": 74465304576
                 },
                 {
-                    "name": "Medical Instruments & Supplies",
+                    "name": "Medical Supplies",
                     "children": [
                         {
                             "name": "ISRG",
@@ -430,7 +430,7 @@
                     ]
                 },
                 {
-                    "name": "Household & Personal Products",
+                    "name": "Personal Products",
                     "children": [
                         {
                             "name": "PG",
@@ -443,7 +443,7 @@
                     ]
                 },
                 {
-                    "name": "Beverages—Non-Alcoholic",
+                    "name": "Beverages",
                     "children": [
                         {
                             "name": "KO",
@@ -520,7 +520,7 @@
                     ]
                 },
                 {
-                    "name": "Farm & Heavy Construction Machinery",
+                    "name": "Construction Machinery",
                     "children": [
                         {
                             "name": "CAT",

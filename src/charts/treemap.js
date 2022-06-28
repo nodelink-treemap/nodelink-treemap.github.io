@@ -30,11 +30,9 @@ export default function treemap(second) {
         d3.treemap()
             .tile(d3.treemapBinary)
             .size([width, height])
+            .paddingOuter(3)
             .paddingInner(1)
-            .paddingTop(1)
-            .paddingRight(1)
-            .paddingBottom(1)
-            .paddingLeft(1)
+            .paddingTop(28)
             .round(true)
             (root);
 
@@ -46,7 +44,7 @@ export default function treemap(second) {
         })
 
         const svg = selection
-            .attr("viewBox", [0, -top - 30, width + right, height + 30 + top + bottom])
+            .attr("viewBox", [0, -top, width + right, height + top + bottom])
             .attr("width", width)
             .attr("height", height)
             .attr("font-family", "sans-serif")
@@ -60,19 +58,19 @@ export default function treemap(second) {
             .data(leaves)
             .join("g")
             .attr('class', 'treemapRectG')
-            .attr("transform", d => d === treemapRoot ? 'translate(0,-30)' : `translate(${x(d.x0)},${y(d.y0)})`)
+            .attr("transform", d => d === treemapRoot ? 'translate(0,-5)' : `translate(${x(d.x0)},${y(d.y0)})`)
             .style('cursor', d => d.children || d._children ? 'pointer' : 'default')
 
         node.append("rect")
             .attr("fill", d => d === treemapRoot ? '#ccc' : colorScale(d.value))
-            .attr("fill-opacity", d => d !== treemapRoot && d.children ? 0 : 0.9)
+            .attr("fill-opacity", 0.9)
             .attr("stroke", '#555')
             .attr("stroke-width", 1.5)
-            .attr("stroke-opacity", d => d !== treemapRoot && d.children ? 0 : 0.7)
+            .attr("stroke-opacity", 0.7)
             .attr("stroke-linejoin", 'round')
             .attr("width", d => d === treemapRoot ? width : x(d.x1) - x(d.x0))
             .attr("height", d => d === treemapRoot ? 30 : y(d.y1) - y(d.y0))
-            .attr('visibility', d => (d !== treemapRoot && d.children) ? 'hidden' : 'visible')
+            // .attr('visibility', d => (d !== treemapRoot && d.children) ? 'hidden' : 'visible')
             .on('click', (_, d) => d === treemapRoot ? zoomout(_, d) : zoomin(_, d))
             .on('mouseover', hover)
             .on('mouseout', exit)
@@ -97,11 +95,19 @@ export default function treemap(second) {
             .attr("height", d => y(d.y1) - y(d.y0))
 
         node.append("text")
-            .attr('visibility', d => (d !== treemapRoot && d.children) ? 'hidden' : 'visible')
+            // .attr('visibility', d => (d !== treemapRoot && d.children) ? 'hidden' : 'visible')
             .attr("clip-path", (d, i) => `url(${new URL(`#${uid}-clip-${i}`, location)})`)
             .attr('fill', d => d === treemapRoot || (d.value / colorScale.domain().at(1)) < 0.6 ? 'black' : 'white') // if root or color is lighter, make text black. Else, make text white
             .selectAll("tspan")
-            .data((d, i) => d === treemapRoot ? [d.ancestors().map(d => d.data.name).reverse().join('/')] : `${d.data.name}\n${format(d.value)}`.split(/\n/g))
+            .data((d, i) => {
+                if(d === treemapRoot) {
+                    return [d.ancestors().map(d => d.data.name).reverse().join('/')]
+                } else if(d.children) {
+                    return [`${d.data.name} ${format(d.value)}`]
+                } else {
+                    return `${d.data.name}\n${format(d.value)}`.split(/\n/g)
+                }
+            })
             .join("tspan")
             .attr("x", 3)
             .attr("y", (d, i, D) => `${(i === D.length - 1) * 0.3 + 1.1 + i * 0.9}em`)

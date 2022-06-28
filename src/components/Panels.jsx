@@ -58,7 +58,7 @@ export default function Panels({ data, value, format }) {
     useEffect(() => {
         if(!root) return
         
-        const colorScale = d3.scaleSequential(d3.interpolateReds)
+        const colorScale = d3.scaleSequential(d3.interpolateBlues)
         .domain(d3.extent(root.descendants().filter(d => d !== root), d => d.value))
 
         // color legend
@@ -120,11 +120,7 @@ export default function Panels({ data, value, format }) {
         links
         .classed('highlight', d => ancestors.includes(d.source) && ancestors.includes(d.target))
 
-        // first raise hovered rect and its label
-        rects
-        .raise()
-
-        // then highlight the rect
+        // highlight the rect
         rects.selectAll('rect')
         .attr('visibility', 'visible')
         .classed('highlight', true)
@@ -134,10 +130,6 @@ export default function Panels({ data, value, format }) {
     function exit() {
         d3.selectAll('path')
         .classed('highlight', false)
-
-        d3.selectAll('.treemapRectG')
-        .filter(d => d.children)
-        .lower()
 
         d3.selectAll('rect')
         .classed('highlight', false)
