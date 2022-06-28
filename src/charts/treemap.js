@@ -70,7 +70,6 @@ export default function treemap(second) {
             .attr("stroke-linejoin", 'round')
             .attr("width", d => d === treemapRoot ? width : x(d.x1) - x(d.x0))
             .attr("height", d => d === treemapRoot ? 30 : y(d.y1) - y(d.y0))
-            // .attr('visibility', d => (d !== treemapRoot && d.children) ? 'hidden' : 'visible')
             .on('click', (_, d) => d === treemapRoot ? zoomout(_, d) : zoomin(_, d))
             .on('mouseover', hover)
             .on('mouseout', exit)

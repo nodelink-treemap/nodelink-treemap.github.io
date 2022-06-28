@@ -66,6 +66,7 @@ export default function Panels({ data, value, format }) {
         .shapeWidth(50)
         .scale(colorScale)
         .labelFormat(d3.format('.3s'))
+        .labels(({ i, generatedLabels }) => generatedLabels.at(i).replace('G', 'B'))
         .orient('horizontal')
 
         let svgLegend = d3.select('.topWrapper').selectAll('.legendSVG')
@@ -109,7 +110,7 @@ export default function Panels({ data, value, format }) {
         let treremapRefElement = d3.select(treemapRef.current)
         treremapRefElement.call(treemapChart)
 
-    }, [root])
+    }, [root, format])
 
     function hover(_, node) {
 
