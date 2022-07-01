@@ -36,7 +36,6 @@ function App() {
         flare: { data: flareData, value: d => d.size },
         animals: { data: animalData, value: d => d.species },
         sp500: { data: sp500Data, value: d => d.marketcap, format: d => d3.format('.3~s')(d).replace('G','B') },
-        // sp500: { data: sp500Data, value: d => d.marketcap, format: d => d < 1e12 ? d3.formatPrefix('$,.0', 1e6)(d) : d3.formatPrefix('$.3', 1e12)(d) },
         orchestras: { data: orchestrasData, value: d => d.number },
       }
       setData(newData)

@@ -46,6 +46,7 @@ export default function Panels({ data, value, format }) {
         if(!data) return
 
         d3.select(nodelinkRef.current).selectAll('*').remove()
+        d3.select(treemapRef.current).selectAll('*').remove()
 
         const _root = d3.hierarchy(data)
 
@@ -53,6 +54,7 @@ export default function Panels({ data, value, format }) {
         _root.sum(d => value(d) === undefined ? 0 : value(d))
 
         setRoot(_root)
+
     }, [data])
     
     useEffect(() => {
@@ -73,6 +75,8 @@ export default function Panels({ data, value, format }) {
         .data([null])
         .join('svg')
         .attr('class', 'legendSVG')
+        .attr('width', 300)
+        .attr('height', 150)
 
         svgLegend.selectAll('.legend')
         .data([null])
@@ -105,10 +109,12 @@ export default function Panels({ data, value, format }) {
 
         // render
         let nodelinkRefElement = d3.select(nodelinkRef.current)
+        nodelinkRefElement.selectAll('*').remove()
         nodelinkRefElement.call(nodelinkChart)
 
-        let treremapRefElement = d3.select(treemapRef.current)
-        treremapRefElement.call(treemapChart)
+        let treemapRefElement = d3.select(treemapRef.current)
+        treemapRefElement.selectAll('*').remove()
+        treemapRefElement.call(treemapChart)
 
     }, [root, format])
 
