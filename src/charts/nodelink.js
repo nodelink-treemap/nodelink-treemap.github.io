@@ -12,7 +12,9 @@ export default function nodelink() {
         treemapSelection, 
         colorScale
 
-    // my will be called on every update and render
+    /**
+     * my will be called on every update and render
+     */
     const my = (selection) => {
 
         const { width, height } = dimensions
@@ -165,8 +167,11 @@ export default function nodelink() {
                         .remove()
             )
 
-        function click(_, d) {
 
+        /**
+         *  Upon clicking a node (d), we toggle its children and trigger a re-render of both charts. 
+         */
+        function click(_, d) {
             // toggle children
             if (d.children) {
                 d._children = d.children
@@ -176,12 +181,18 @@ export default function nodelink() {
                 d._children = null
             }
 
+            // we update the source to show where the change originates
             source = d
 
             selection.call(my)
             treemapSelection.call(treemap)
         }
-        // updates the circle for each node in the nodes parameter
+
+        /** 
+         * Updates the circle's attributes for each node in the nodes parameteri
+         * 
+         * nodes is a selection of nodes
+         */
         function updateCircle(nodes) {
             nodes
                 .attr("fill", d => d === root ? '#ccc' : colorScale(d.value))
@@ -190,7 +201,11 @@ export default function nodelink() {
                 .attr("r", d => d._children ? 9 : 6)
         }
 
-        // updates the text label for each node in the nodes parameter
+        /**
+         * Updates the text label for each node in the nodes parameter
+         *
+         * nodes is a selection of nodes
+         */
         function updateText(nodes) {
             nodes
                 .attr("dy", "0.32em")
