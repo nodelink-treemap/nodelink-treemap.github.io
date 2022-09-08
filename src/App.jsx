@@ -53,7 +53,12 @@ function App() {
   return (
     <div className="app">
       <div className='topWrapper'>
-        <select onChange={handleChange}>
+        <select onChange={handleChange}
+          style={{
+            width: 100,
+            marginRight: 200
+          }}
+        >
           {datasets.map((d, i) => <option key={i} value={d}>{d}</option>)}
         </select>
 

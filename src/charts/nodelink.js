@@ -4,20 +4,23 @@ export default function nodelink() {
     let root,
         setRoot,
         dimensions,
-        source,
+        source,     // the source of change in an interaction (eg. the node that was clicked)
         hover,
         exit,
-        i = -1,
-        treemap,
-        treemapSelection,
+        i = -1,     // we will use this for node keys
+        treemap,    // a reference to the treemap 
+        treemapSelection, 
         colorScale
 
+    // my will be called on every update and render
     const my = (selection) => {
 
         const { width, height } = dimensions
 
+        // we grab the root from the treemap chart to find the current level
         const treemapRoot = treemap.treemapRoot()
 
+        // the nodelink layout shall be alphabetically sorted
         root.sort((a, b) => a.data.name.localeCompare(b.data.name))
 
         // Compute the layout.
@@ -42,17 +45,19 @@ export default function nodelink() {
             .attr("width", width)
             .attr("height", height)
 
+        // we add a transition to the viewbox so that when the opened nodes changes, the zooming is smooth
         svg.transition()
             .duration(700)
             .ease(d3.easeSin)
             .attr("viewBox", [-dy * 3 / 4, x0 - dx, width + dy / 2, treeHeight])
 
+        
         svg.selectAll('.nodeG')
-            .data([null])
+            .data([null]) // for idempotency
             .join("g")
             .attr('class', 'nodeG')
             .selectAll("g")
-            .data(root.descendants(), d => d.id || (d.id = ++i))
+            .data(root.descendants(), d => d.id || (d.id = ++i)) // the specified key generates unique ids to ensure correct update logic below
             .join(
                 (enter) => {
                     const node = enter.append('g')

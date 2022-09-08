@@ -1,6 +1,6 @@
 import * as d3 from 'd3'
 
-export default function treemap(second) {
+export default function treemap() {
     let root,
         dimensions,
         hover,
@@ -114,9 +114,20 @@ export default function treemap(second) {
             .text(d => d)
             .style('pointer-events', 'none')
 
-        function zoomin(_, d) {
 
-            // if there is no ancestor one depth lower, just zoom directly to the clicked node
+
+
+        /**
+         *  Function zoomin will zoom to the clicked node on the tree. We update the root to 
+         *  reflect this.
+         *
+         *  NOTE: We only jump to the next level (one child below). Therefore we must 
+         *  compute the next node to zoom to. 
+         */
+        function zoomin(_, d) {
+            // if there is a node between the current root and the selected node 
+            // (meaning there is a parent we should zoom to first), then we zoom the that parent
+            // otherwise, we should zoom to the selected node.
             const topLevelParent = d.ancestors().find(a => a.depth == depth + 1) || d
 
             if (topLevelParent.children || topLevelParent._children) {
@@ -128,6 +139,8 @@ export default function treemap(second) {
 
                 treemapRoot = topLevelParent
             }
+
+            // if there are collapsed children, we show them. Then we re-render regardless
             if(topLevelParent._children) {
                 //toggle
                 d.children = d._children
@@ -137,13 +150,17 @@ export default function treemap(second) {
             } else {
                 nodelinkSelection.call(nodelink)
             }
-
+            // we trigger a re-render
             selection.call(my)
-
         }
 
-        function zoomout(_, d) {
 
+        /**
+         *  Function zoomout will zoom the treemap to the parent's level.
+         *  As a side-effect we collapse all of the parent's children to provide a reasonable
+         *  view of the treemap.   
+         */
+        function zoomout(_, d) {
             const parent = d && d.parent
 
             if (parent) {
@@ -163,9 +180,13 @@ export default function treemap(second) {
                 nodelinkSelection.call(nodelink.source(d)) // and update source of change
             }
         }
-
     }
+    
 
+    /**
+     * If the selected node has children, we collapse them by placing the children in _children
+     * to hide them. This is done recursively to childrens' children. 
+     */
     function collapse(node) {
         if (node.children) {
             node._children = node.children
@@ -174,7 +195,11 @@ export default function treemap(second) {
         }
     }
 
-
+    /**
+     * The following are getter/setter functions (depending on the number of arguments).
+     * 
+     * Note that at the end of setter functions we return my to allow for chaining. 
+     */
     my.root = function (_) {
         return arguments.length ? (root = _, my) : root
     }
