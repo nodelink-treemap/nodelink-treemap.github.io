@@ -1,5 +1,11 @@
 import * as d3 from 'd3'
 
+/**
+ * nodelink() is a chart based on the Mike Bostock's towards reusable charts paradigm.
+ * 
+ * In typical d3 style, we chain attribute and instance methods to produce an updatable,
+ * persistant chart. 
+ */
 export default function nodelink() {
     let root,
         setRoot,
@@ -53,7 +59,7 @@ export default function nodelink() {
             .ease(d3.easeSin)
             .attr("viewBox", [-dy * 3 / 4, x0 - dx, width + dy / 2, treeHeight])
 
-        
+	// here is our main group for the node elements
         svg.selectAll('.nodeG')
             .data([null]) // for idempotency
             .join("g")
@@ -65,16 +71,20 @@ export default function nodelink() {
                     const node = enter.append('g')
                         .attr('class', 'node')
                         .style('cursor', d => d.children || d._children ? 'pointer' : 'default')
-                        .attr('transform', `translate(${source.y},${source.x})`)
+                        
+			// we initially insert the node at the source's location for a nice transition
+			.attr('transform', `translate(${source.y},${source.x})`)
                         .style('outline', d => d === treemapRoot ? 'solid 2px black' : 'none')
                         .on('click', click)
                         .on('mouseover', hover)
                         .on('mouseout', exit)
 
+		    // here we transition to the actual position
                     node.transition()
                         .duration(700)
                         .attr("transform", d => `translate(${d.y},${d.x})`)
 
+		    // again we start a circle's size at zero so that it will grow "from nothing"
                     node.append('circle')
                         .attr('r', 0)
                         .transition()
@@ -86,7 +96,6 @@ export default function nodelink() {
                         .transition()
                         .duration(700)
                         .call(updateText)
-                    
                 },
                 (update) => update.call(update => {
                     update
@@ -101,12 +110,13 @@ export default function nodelink() {
 
                     update.select('text')
                         .call(updateText)
-
                 }),
                 (exit) => {
                     exit
                         .transition()
                         .duration(700)
+			
+			// we slide the node to the collapsing node then remove it
                         .attr('transform', `translate(${source.y},${source.x})`)
                         .remove()
 
@@ -122,6 +132,7 @@ export default function nodelink() {
                 }
             )
 
+	// here is our main group for the link elements
         svg.selectAll('.linkG')
             .data([null])
             .join("g")
@@ -133,7 +144,9 @@ export default function nodelink() {
             .attr("stroke-width", 2)
             .style('pointer-events', 'none')
             .selectAll("path")
-            .data(root.links(), d => d.target.id)
+
+	    // we will use the target node's is as the key becuase that is unique (one source can have many targets)
+            .data(root.links(), d => d.target.id)	
             .join(
                 (enter) =>
                     enter.append('path')

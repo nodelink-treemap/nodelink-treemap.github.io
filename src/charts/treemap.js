@@ -1,5 +1,11 @@
 import * as d3 from 'd3'
 
+/**
+ * treemap() is a chart based on the Mike Bostock's towards reusable charts paradigm.
+ * 
+ * In typical d3 style, we chain attribute and instance methods to produce an updatable,
+ * persistant chart. 
+ */
 export default function treemap() {
     let root,
         dimensions,
@@ -14,6 +20,9 @@ export default function treemap() {
         colorScale,
         format = d3.format(',')
 
+    /**
+     *  my will be called on every update and render.
+     */
     const my = (selection) => {
 
         const { width, height, margin } = dimensions
@@ -24,7 +33,7 @@ export default function treemap() {
 
         root.sort((a, b) => a.value < b.value ? 1 : -1)
 
-        let leaves = root.descendants()
+        let descendants = root.descendants()
 
         // Compute the treemap layout.
         d3.treemap()
@@ -36,13 +45,16 @@ export default function treemap() {
             .round(true)
             (root);
 
-        // filter out the leaves that are not in the current frame
-        leaves = leaves.filter(d => {
+        // filter out the descendants that are not in the current frame
+        descendants = descendants.filter(d => {
             let [minX, maxX] = x.domain()
             let [minY, maxY] = y.domain()
             return (d.x0 >= minX && d.x1 <= maxX) && (d.y0 >= minY && d.y1 <= maxY)
         })
 
+        /*
+         *  We grab the selection and join a new group to it.
+         */
         const svg = selection
             .attr("viewBox", [0, -top, width + right, height + top + bottom])
             .attr("width", width)
@@ -55,7 +67,7 @@ export default function treemap() {
             .attr('class', 'treemapg')
 
         const node = svg.selectAll("g")
-            .data(leaves)
+            .data(descendants)
             .join("g")
             .attr('class', 'treemapRectG')
             .attr("transform", d => d === treemapRoot ? 'translate(0,-5)' : `translate(${x(d.x0)},${y(d.y0)})`)
@@ -70,17 +82,29 @@ export default function treemap() {
             .attr("stroke-linejoin", 'round')
             .attr("width", d => d === treemapRoot ? width : x(d.x1) - x(d.x0))
             .attr("height", d => d === treemapRoot ? 30 : y(d.y1) - y(d.y0))
+            
+            // if this node is the root, we should zoom out, otherwise we zoom in
             .on('click', (_, d) => d === treemapRoot ? zoomout(_, d) : zoomin(_, d))
             .on('mouseover', hover)
             .on('mouseout', exit)
 
-
+        // We append a title showing the node and its ancestors
         node.append("title").text(d =>
             d.ancestors()
                 .reverse()
                 .slice(1)
+                // For each ancestor, we should indent each ancestor one more than the last.
                 .reduce((acc, curr, i) => {
-                    return acc + '\n' + Array(i + 1).fill('\t').reduce((a, c) => a + c, '') + curr.data.name
+                    /**
+                     *  We append a new line to the acc
+                     *  then we add i+1 tabs,
+                     *  then we add the name
+                     */
+                    let indent = '\t';
+                    while(i-- > 0)
+                      indent += '\t'
+
+                    return acc + '\n' + indent + curr.data.name
                 }, root.data.name)
         );
 
@@ -96,14 +120,20 @@ export default function treemap() {
         node.append("text")
             // .attr('visibility', d => (d !== treemapRoot && d.children) ? 'hidden' : 'visible')
             .attr("clip-path", (d, i) => `url(${new URL(`#${uid}-clip-${i}`, location)})`)
-            .attr('fill', d => d === treemapRoot || (d.value / colorScale.domain().at(1)) < 0.6 ? 'black' : 'white') // if root or color is lighter, make text black. Else, make text white
+            
+            // if root or color is lighter, make text black. Else, make text white
+            .attr('fill', d => d === treemapRoot || (d.value / colorScale.domain().at(1)) < 0.6 ? 'black' : 'white') 
             .selectAll("tspan")
+            // The data function binds the array of text provided below
             .data((d, i) => {
                 if(d === treemapRoot) {
+                    // if the root, we should show the current root and the path of it's ancestors (eg. for square: shape/rectangle/square)
                     return [d.ancestors().map(d => d.data.name).reverse().join('/')]
                 } else if(d.children) {
+                    // else if this node has children, we want to display the name and value on the same line
                     return [`${d.data.name} ${format(d.value)}`]
                 } else {
+                    // otherwise we should place the two strings on their own lines
                     return `${d.data.name}\n${format(d.value)}`.split(/\n/g)
                 }
             })
@@ -113,9 +143,6 @@ export default function treemap() {
             .attr("fill-opacity", (d, i, D) => i === D.length - 1 ? 0.7 : null)
             .text(d => d)
             .style('pointer-events', 'none')
-
-
-
 
         /**
          *  Function zoomin will zoom to the clicked node on the tree. We update the root to 
