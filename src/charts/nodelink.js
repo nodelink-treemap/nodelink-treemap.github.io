@@ -71,7 +71,6 @@ export default function nodelink() {
                     const node = enter.append('g')
                         .attr('class', 'node')
                         .style('cursor', d => d.children || d._children ? 'pointer' : 'default')
-                        
 			// we initially insert the node at the source's location for a nice transition
 			.attr('transform', `translate(${source.y},${source.x})`)
                         .style('outline', d => d === treemapRoot ? 'solid 2px black' : 'none')
@@ -115,7 +114,6 @@ export default function nodelink() {
                     exit
                         .transition()
                         .duration(700)
-			
 			// we slide the node to the collapsing node then remove it
                         .attr('transform', `translate(${source.y},${source.x})`)
                         .remove()
@@ -132,7 +130,7 @@ export default function nodelink() {
                 }
             )
 
-	// here is our main group for the link elements
+	      // here is our main group for the link elements
         svg.selectAll('.linkG')
             .data([null])
             .join("g")
@@ -144,8 +142,7 @@ export default function nodelink() {
             .attr("stroke-width", 2)
             .style('pointer-events', 'none')
             .selectAll("path")
-
-	    // we will use the target node's is as the key becuase that is unique (one source can have many targets)
+	          // we will use the target node's is as the key becuase that is unique (one source can have many targets)
             .data(root.links(), d => d.target.id)	
             .join(
                 (enter) =>
@@ -179,7 +176,6 @@ export default function nodelink() {
                         )
                         .remove()
             )
-
 
         /**
          *  Upon clicking a node (d), we toggle its children and trigger a re-render of both charts. 
