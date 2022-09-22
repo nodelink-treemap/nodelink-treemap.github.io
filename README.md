@@ -9,7 +9,7 @@ the connection between Nodelink Graphs and Treemaps.
 ## Approach
 
 <p align="center">
-  <img src="../public/nodelink-treemap-preview.png" alt=:"nodelink-treemap-preview"/>
+  <img src="/public/nodelink-treemap-preview.png" alt="nodelink-treemap-preview"/>
 </p>
 
 When approaching our main-goal, the necessity for simple data sharing and rendering was clear. For this reason, we chose to use React with D3 for this project.
