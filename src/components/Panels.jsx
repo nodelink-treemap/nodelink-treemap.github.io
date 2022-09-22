@@ -7,6 +7,9 @@ import './panels.css'
 import nodelink from '../charts/nodelink'
 import treemap from '../charts/treemap'
 
+/**
+ * Panels is a component that contains the nodelink and treemap charts
+ */
 export default function Panels({ data, value, format }) {
     const [root, setRoot] = useState()
 

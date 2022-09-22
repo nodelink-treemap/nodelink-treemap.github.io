@@ -59,7 +59,7 @@ export default function nodelink() {
             .ease(d3.easeSin)
             .attr("viewBox", [-dy * 3 / 4, x0 - dx, width + dy / 2, treeHeight])
 
-	// here is our main group for the node elements
+	      // here is our main group for the node elements
         svg.selectAll('.nodeG')
             .data([null]) // for idempotency
             .join("g")
@@ -71,19 +71,19 @@ export default function nodelink() {
                     const node = enter.append('g')
                         .attr('class', 'node')
                         .style('cursor', d => d.children || d._children ? 'pointer' : 'default')
-			// we initially insert the node at the source's location for a nice transition
-			.attr('transform', `translate(${source.y},${source.x})`)
+			                  // we initially insert the node at the source's location for a nice transition
+			                  .attr('transform', `translate(${source.y},${source.x})`)
                         .style('outline', d => d === treemapRoot ? 'solid 2px black' : 'none')
                         .on('click', click)
                         .on('mouseover', hover)
                         .on('mouseout', exit)
 
-		    // here we transition to the actual position
+		                // here we transition to the actual position
                     node.transition()
                         .duration(700)
                         .attr("transform", d => `translate(${d.y},${d.x})`)
 
-		    // again we start a circle's size at zero so that it will grow "from nothing"
+		                // again we start a circle's size at zero so that it will grow "from nothing"
                     node.append('circle')
                         .attr('r', 0)
                         .transition()
@@ -114,7 +114,7 @@ export default function nodelink() {
                     exit
                         .transition()
                         .duration(700)
-			// we slide the node to the collapsing node then remove it
+			                  // we slide the node to the collapsing node then remove it
                         .attr('transform', `translate(${source.y},${source.x})`)
                         .remove()
 
