@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 
-import Panels from './components/Panels'
+import Panels, { Colors } from './components/Panels'
 
 import * as d3 from 'd3'
+
 
 import './App.css'
 
@@ -22,6 +23,7 @@ function App() {
   })
 
   const [currentData, setCurrentData] = useState(undefined)
+  const [color, setColor] = useState('blues')
 
   // on load, get csv files
   useEffect(() => {
@@ -64,8 +66,23 @@ function App() {
 
         <h1>Welcome to nodelink-treemap</h1>
 
+        <div className="colorWrapper">
+          <svg className="legendSVG"/>
+
+          <select onChange={(e) => setColor(e.target.value)}>
+            {Object.keys(Colors).map((color, i) => {
+              return <option key={i} value={color}>{color}</option>
+            })}
+          </select>
+        </div>
+
       </div>
-      <Panels data={currentData && currentData.data} value={currentData && currentData.value} format={currentData && currentData.format} />  
+      <Panels 
+        data={currentData && currentData.data} 
+        value={currentData && currentData.value} 
+        format={currentData && currentData.format} 
+        color={color}
+      />  
     </div>
   )
 }

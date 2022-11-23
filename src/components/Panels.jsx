@@ -7,10 +7,19 @@ import './panels.css'
 import nodelink from '../charts/nodelink'
 import treemap from '../charts/treemap'
 
+export const Colors = {
+  blues: d3.interpolateBlues,
+  greens: d3.interpolateGreens,
+  greys: d3.interpolateGreys,
+  oranges: d3.interpolateOranges,
+  purples: d3.interpolatePurples,
+  reds: d3.interpolateReds,
+}
+
 /**
  * Panels is a component that contains the nodelink and treemap charts
  */
-export default function Panels({ data, value, format }) {
+export default function Panels({ data, value, format, color }) {
     const [root, setRoot] = useState()
 
     // we want each chart to be full height (below topbar) and half width
@@ -65,7 +74,7 @@ export default function Panels({ data, value, format }) {
     useEffect(() => {
         if(!root) return
         
-        const colorScale = d3.scaleSequential(d3.interpolateBlues)
+        const colorScale = d3.scaleSequential(Colors[color])
         .domain(d3.extent(root.descendants().filter(d => d !== root), d => d.value))
 
         // color legend
@@ -126,7 +135,7 @@ export default function Panels({ data, value, format }) {
         treemapRefElement.selectAll('*').remove()
         treemapRefElement.call(treemapChart)
 
-    }, [root])
+    }, [root, color])
 
     // we keep hover at this top level to share between both charts 
     function hover(_, node) {

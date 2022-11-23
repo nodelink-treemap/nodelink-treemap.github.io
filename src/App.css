@@ -20,7 +20,15 @@ select {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
 }
+
+.colorWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .app .topWrapper select:disabled {
   visibility: hidden;
 }
