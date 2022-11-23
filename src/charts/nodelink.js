@@ -33,7 +33,7 @@ export default function nodelink() {
 
         // Compute the layout.
         const dx = 25;
-        const dy = width / (root.height + 1.5);
+        const dy = (width + 50) / (root.height + 1.3);
         d3.tree().nodeSize([dx, dy])(root);
 
         // Center the tree.
@@ -49,7 +49,7 @@ export default function nodelink() {
 
         const svg = selection
             .attr("font-family", "sans-serif")
-            .attr("font-size", 15)
+            .attr("font-size", 20)
             .attr("width", width)
             .attr("height", height)
 

@@ -15,6 +15,10 @@
     max-height: 100%;
 }
 
+.legend {
+  font-size: 18px;
+}
+
 .highlight {
     stroke: red;
     stroke-width: 3px;

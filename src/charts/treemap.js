@@ -60,7 +60,7 @@ export default function treemap() {
             .attr("width", width)
             .attr("height", height)
             .attr("font-family", "sans-serif")
-            .attr("font-size", 14)
+            .attr("font-size", 20)
             .selectAll('g')
             .data([null])
             .join('g')
@@ -139,7 +139,9 @@ export default function treemap() {
             })
             .join("tspan")
             .attr("x", 3)
-            .attr("y", (d, i, D) => `${(i === D.length - 1) * 0.3 + 1.1 + i * 0.9}em`)
+            .attr("y", (d, i, D) => {
+              return `${1.1 + i * 1.2}em`
+            })
             .attr("fill-opacity", (d, i, D) => i === D.length - 1 ? 0.7 : null)
             .text(d => d)
             .style('pointer-events', 'none')
