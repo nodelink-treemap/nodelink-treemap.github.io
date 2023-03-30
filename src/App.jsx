@@ -64,8 +64,6 @@ function App() {
           {datasets.map((d, i) => <option key={i} value={d}>{d}</option>)}
         </select>
 
-        <h1>Welcome to nodelink-treemap</h1>
-
         <div className="colorWrapper">
           <svg className="legendSVG"/>
 

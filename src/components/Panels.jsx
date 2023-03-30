@@ -76,12 +76,13 @@ export default function Panels({ data, value, format, color }) {
         
         const colorScale = d3.scaleSequential(Colors[color])
         .domain(d3.extent(root.descendants().filter(d => d !== root), d => d.value))
+          .nice()
 
         // color legend
         let legend = legendColor()
-        .shapeWidth(50)
+        .shapeWidth(75)
         .scale(colorScale)
-        .labelFormat(d3.format('.3s'))
+        .labelFormat(d3.format('.2s'))
         .labels(({ i, generatedLabels }) => generatedLabels.at(i).replace('G', 'B')) // to keep format consistent to Currency, not Scientific
         .orient('horizontal')
 
@@ -90,7 +91,7 @@ export default function Panels({ data, value, format, color }) {
         .data([null])
         .join('svg')
         .attr('class', 'legendSVG')
-        .attr('width', 300)
+        .attr('width', 415)
         .attr('height', 150)
 
         svgLegend.selectAll('.legend')
