@@ -7,7 +7,7 @@ import * as d3 from 'd3'
 
 import './App.css'
 
-function App() {
+function NodelinkTreemap() {
   const datasets = [
     'animals',
     'flare',
@@ -85,4 +85,4 @@ function App() {
   )
 }
 
-export default App
+export default NodelinkTreemap

@@ -6,7 +6,7 @@
 }
 
 .nodelink {
-    flex: 0.5;
+    flex: 1;
     width: auto;
     height: 100%;
 }
@@ -27,7 +27,7 @@
 }
 
 .treemap {
-    flex: 0.5;
+    flex: 1;
     display: flex;
     height: calc(100vh - 70px);
 }

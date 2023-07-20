@@ -175,9 +175,13 @@ export default function treemap() {
                 d.children = d._children
                 d._children = null
 
-                nodelinkSelection.call(nodelink.source(topLevelParent))
+                if(nodelinkSelection) {
+                  nodelinkSelection.call(nodelink.source(topLevelParent))
+                }
             } else {
-                nodelinkSelection.call(nodelink)
+                if(nodelink && nodelinkSelection) {
+                  nodelinkSelection.call(nodelink)
+                }
             }
             // we trigger a re-render
             selection.call(my)
@@ -206,7 +210,9 @@ export default function treemap() {
 
                 // update
                 selection.call(my)
-                nodelinkSelection.call(nodelink.source(d)) // and update source of change
+                if(nodelink && nodelinkSelection) {
+                  nodelinkSelection.call(nodelink.source(d)) // and update source of change
+                }
             }
         }
     }
