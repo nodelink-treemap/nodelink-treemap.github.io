@@ -9,6 +9,8 @@ npm run build
 # navigate into the build output directory
 cd dist
 
+cp index.html treemap.html
+
 git init
 git checkout -b main
 git add -A
