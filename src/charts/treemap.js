@@ -72,6 +72,12 @@ export default function treemap() {
             .attr('class', 'treemapRectG')
             .attr("transform", d => d === treemapRoot ? 'translate(0,-5)' : `translate(${x(d.x0)},${y(d.y0)})`)
             .style('cursor', d => d.children || d._children ? 'pointer' : 'default')
+            .on('mouseover', (e) => {
+              setTspanVisibility(e.target.parentNode, 'visible')
+            })
+            .on('mouseout', (e) => {
+              setTspanVisibility(e.target.parentNode, 'hidden')
+            })
 
         node.append("rect")
             .attr("fill", d => d === treemapRoot ? '#ccc' : colorScale(d.value))
@@ -118,7 +124,8 @@ export default function treemap() {
             .attr("height", d => y(d.y1) - y(d.y0))
 
         node.append("text")
-            // .attr('visibility', d => (d !== treemapRoot && d.children) ? 'hidden' : 'visible')
+            .attr("x", 3)
+            .attr("y", "1.1em")
             .attr("clip-path", (d, i) => `url(${new URL(`#${uid}-clip-${i}`, location)})`)
             
             // if root or color is lighter, make text black. Else, make text white
@@ -129,20 +136,14 @@ export default function treemap() {
                 if(d === treemapRoot) {
                     // if the root, we should show the current root and the path of it's ancestors (eg. for square: shape/rectangle/square)
                     return [d.ancestors().map(d => d.data.name).reverse().join('/')]
-                } else if(d.children) {
-                    // else if this node has children, we want to display the name and value on the same line
-                    return [`${d.data.name} ${format(d.value)}`]
                 } else {
                     // otherwise we should place the two strings on their own lines
-                    return `${d.data.name}\n${format(d.value)}`.split(/\n/g)
+                    return `${d.data.name}\n ${format(d.value)}`.split(/\n/g)
                 }
             })
             .join("tspan")
-            .attr("x", 3)
-            .attr("y", (d, i, D) => {
-              return `${1.1 + i * 1.2}em`
-            })
             .attr("fill-opacity", (d, i, D) => i === D.length - 1 ? 0.7 : null)
+            .attr('visibility', (_, i) => i === 1 ? 'hidden' : 'visible')
             .text(d => d)
             .style('pointer-events', 'none')
 
@@ -271,4 +272,17 @@ export default function treemap() {
     }
 
     return my
+}
+
+/**
+  * This function will set the visibility of the second tspan to the given visibility.
+  * This is used to show/hide the numeric label of the node when the node is hovered.
+  */
+function setTspanVisibility(query, visibility) {
+  let g = d3.select(query)
+  let tspans = g.selectAll('tspan')
+  if(tspans.size() > 1) {
+    tspans.filter((_, i) => i === 1)
+      .attr('visibility', visibility)
+  }
 }
