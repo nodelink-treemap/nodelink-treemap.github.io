@@ -175,14 +175,18 @@ export default function treemap() {
                 //toggle
                 d.children = d._children
                 d._children = null
+            }
 
-                if(nodelinkSelection) {
-                  nodelinkSelection.call(nodelink.source(topLevelParent))
-                }
-            } else {
-                if(nodelink && nodelinkSelection) {
-                  nodelinkSelection.call(nodelink)
-                }
+            topLevelParent.children.forEach(c => {
+              if(c._children) {
+                c.children = c._children
+                c._children = null
+              }
+              c.children?.forEach(cc => collapse(cc))
+            })
+
+            if(nodelinkSelection) {
+              nodelinkSelection.call(nodelink.source(topLevelParent))
             }
             // we trigger a re-render
             selection.call(my)
@@ -207,7 +211,13 @@ export default function treemap() {
                 treemapRoot = parent
 
                 // collapse siblings
-                parent.children.forEach(c => collapse(c));
+                parent.children.forEach(c => {
+                  if(c._children) {
+                    c.children = c._children
+                    c._children = null
+                  }
+                  c.children?.forEach(cc => collapse(cc))
+                })
 
                 // update
                 selection.call(my)

@@ -98,7 +98,17 @@ export default function TreemapPanel({ data, value, format, color }) {
                 node._children.forEach(c => collapse(c))
             }
         }
-        root.children.forEach(c => collapse(c))
+        const expand = (node) => {
+          if (node._children) {
+            node.children = node._children
+            node._children = null
+          }
+        }
+        // we collapse all nodes except the root and its children
+        root.children.forEach(c => {
+          expand(c)
+          c.children?.forEach(cc => collapse(cc))
+        })
 
         // now we update the charts with the new root and the new color scale from the computed data
         treemapChart.root(root)
